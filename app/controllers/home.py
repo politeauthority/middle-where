@@ -53,6 +53,10 @@ def run():
 
 def _get_request_data():
     """
+    Get the request data as JSON, but lookout, its likely people will forget to set the correct Content-Type.
+
+    :returns: The request as JSON to a python dict.
+    :rtype: dict
     """
     try:
         return request.get_json()
