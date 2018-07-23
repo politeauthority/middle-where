@@ -1,4 +1,5 @@
 FROM frolvlad/alpine-python3
+EXPOSE 5005
 RUN apk update && apk add --no-cache \
     bash \
     openssh \
@@ -18,4 +19,4 @@ COPY run-crond.sh /run-crond.sh
 RUN pip3 install -r /opt/middle-where/requirements.txt
 RUN mkdir -p /var/log/cron && touch /var/log/cron/cron.log
 
-CMD ["/run-crond.sh", "gunicorn -b 0.0.0.0:13203 app:app"]
+CMD gunicorn -b 0.0.0.0:5005 app:app
